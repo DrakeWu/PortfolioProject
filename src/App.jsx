@@ -5,7 +5,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'r
 function App() {
   const [hour, setHour] = useState(0)
   const [unit, setUnit] = useState("F")
-  
+  const [showAll, setShowAll] = useState(false)
 
   const PhillyHourlyWeatherData = [
     { time: "now", temp: 95, condition: "Sunny", humidity: 88, windspeed: 4, uvindex: 9 },
@@ -45,7 +45,9 @@ function App() {
     } else {
       return `${FahrenheitToCelsius(temp)}°C`;
     }
-  }
+  }/* '$ is a useful way to add a numeric function variable with a string for display. */
+    
+
  /* installed recharts: https://recharts.github.io/en-US/examples/SimpleLineChart/*/
   function DailyGraph({data, unit, ConvertTemp}) {
     const graphData = data.map((item) => ({
@@ -163,8 +165,8 @@ function App() {
 
 <SevereWeatherWarning condition={PhillyHourlyWeatherData[hour].condition} temp={PhillyHourlyWeatherData[hour].temp} />
 
-      <h2 className="m-0 bg-gradient-to-b from-blue-500 to-blue-400 text-white">Hourly Forecast</h2>
-      <section id="weathercast" className="bg-gradient-to-b from-blue-400 to-purple-500">
+      <h2 className="m-0 bg-linear-to-b from-blue-500 to-blue-400 text-white">Hourly Forecast</h2>
+      <section id="weathercast" className="bg-linear-to-b from-blue-400 to-purple-500">
         <div id="weathercast1" className="text-white flex gap-4 overflow-x-auto px-6 py-4">
           {PhillyHourlyWeatherData.map((data, index) => (
             <CityWeather key={index} {...data} onClick={() => setHour(index)} />
@@ -175,7 +177,7 @@ function App() {
           {...data} was autcompleted by intellisense and is useful so i do not have to write all the props.
           onclick helps change the shown temperature to the selected hour
           i want it to display more like UV or humidity. */}
-     <section id="graph" className="bg-gradient-to-b from-purple-500 to-pink-500">
+     <section id="graph" className="bg-linear-to-b from-purple-500 to-pink-500">
         <div className="flex justify-center items-center py-4">
           {DailyGraph({ data: PhillyHourlyWeatherData, unit, ConvertTemp })}
         </div>
